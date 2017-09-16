@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">{{title}}</h1>
+        <p class="lead">{{description}}</p>
+        <hr class="my-4">
+        <p>Alguns membros da formação atual são exibidos na tabela abaixo. Mas você pode: cadastrar, editar ou excluir um herói.</p>
+        <p class="lead">
+            <a class="btn btn-info" href="#cadastrar" role="button"><i class="fa fa-plus" aria-hidden="true"></i> Cadastrar Herói</a>
+        </p>
+    </div>
+
+    <h2>Heróis</h2>
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 2%;">ID</th>
+                <th style="width: 30%;">Nome</th>
+                <th style="width: auto;">Pessoa</th>
+                <th style="width: auto;">Foto (URL)</th>
+                <th style="width: auto;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vingador of vingadores">
+                <td>{{vingador.id}}</td>
+                <td>{{vingador.nome}}</td>
+                <td>{{vingador.pessoa}}</td>
+                <td>{{vingador.urlFoto}}</td>
+                <td>
+                    <button type="button" (click)="editHeroi(vingador.id)" class="btn btn-primary btn-sm" title="Editar">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteHeroi(vingador.id)" title="Excluir">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                </td>
+        </tbody>
+    </table>
+
+    <br>
+    <h2 id="cadastrar">Cadastrar Herói</h2>
+    <form #formCadastro="ngForm" (ngSubmit)="cadastrar()">
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="vingadors.nome" required>
+        </div>
+        <div class="form-group">
+            <label for="pessoa">Pessoa:</label>
+            <input type="text" class="form-control" id="pessoa" name="pessoa" [(ngModel)]="vingadors.pessoa" required>
+        </div>
+        <div class="form-group">
+                <label for="pessoa">Foto (URL):</label>
+                <input type="text" class="form-control" id="foto" name="foto" [(ngModel)]="vingadors.urlFoto">
+            </div>
+        <div class="pull-right">
+                <button type="submit" class="btn btn-danger" (click)="limpar()"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+                <button type="submit" class="btn btn-success" [disabled]="!formCadastro.valid" (click)="submit()"><i class="fa fa-check" aria-hidden="true"></i> Salvar</button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</div>

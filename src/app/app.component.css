@@ -1,0 +1,19 @@
+.primeiro {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.jumbotron {
+    padding: 2rem 2rem !important;
+}
+
+.clearfix{
+    margin-bottom: 1rem;
+}
+
+.btn-info {
+    color: #ffffff;
+    background-color: #e78e08;
+    border-color: transparent;
+    text-transform: uppercase;
+}
