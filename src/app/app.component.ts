@@ -54,14 +54,12 @@ export class AppComponent implements OnInit {
         else{
             this.vingadores.push(new Vingador(this.id, this.vingadors.nome, this.vingadors.pessoa, this.vingadors.urlFoto));
             this.id = this.id+1;
-            console.log(this.vingadores);
             this.limpar();
         }   
     }
 
     deleteHeroi(id){ 
         this.vingadores.splice(id, 1);
-        console.log(this.vingadores);
         this.limpar();
     }
 
