@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
             new Vingador(4, 'Gavião Arqueiro', 'Clint Barton','https://wikimedia.org/Arqueiro.jpg'),
             new Vingador(5, 'Homem Aranha', 'Peter Parker', 'https://wikimedia.org/Homem_Aranha.jpg')
         ];
-        this.id = 6;
+        this.id = 5;
     }
 
     ngOnInit(): void {
@@ -52,15 +52,28 @@ export class AppComponent implements OnInit {
             this.limpar();
         }
         else{
-            this.vingadores.push(new Vingador(this.id, this.vingadors.nome, this.vingadors.pessoa, this.vingadors.urlFoto));
-            this.id = this.id+1;
+            this.vingadores.push(new Vingador(++this.id, this.vingadors.nome, this.vingadors.pessoa, this.vingadors.urlFoto));
+           /* this.id = this.id+1;*/
             this.limpar();
         }   
     }
 
-    deleteHeroi(id){ 
-        this.vingadores.splice(id, 1);
-        this.limpar();
+    deleteHeroi(id: number): void{ /* não é obrigatório declarar o tipo de retorno nem mesmo o tipo do parâmetro */
+        /*this.vingadores.splice(id, 1);
+        this.limpar();*/
+
+        //OUTRA FORMA DE DELETAR PERCORRENDO O ARRAY ATÉ ENCONTRAR O ID
+        let indice = -1;
+        for (let i=0; i < this.vingadores.length; i++){
+            if(this.vingadores[i].id == id){
+                indice = i;
+                i = this.vingadores.length; 
+            }
+        }
+        if(indice != -1){
+            this.vingadores.splice(indice, 1); //esse segundo parâmetro é a quantidade de objetos que deseja excluir
+            this.vingadors = new Vingador(0, '', '', '');
+        }
     }
 
 }
