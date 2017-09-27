@@ -1,0 +1,26 @@
+<table class="table table-hover table-bordered">
+  <thead>
+      <tr>
+          <th style="width: 2%;">ID</th>
+          <th style="width: 30%;">Nome</th>
+          <th style="width: auto;">Pessoa</th>
+          <th style="width: auto;">Foto (URL)</th>
+          <th style="width: auto;">Ações</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let vingador of listaVingadores">
+          <td>{{vingador.id}}</td>
+          <td>{{vingador.nome}}</td>
+          <td>{{vingador.pessoa}}</td>
+          <td>{{vingador.urlFoto}}</td>
+          <td>
+              <button type="button" (click)="editHeroi(vingador)" class="btn btn-primary btn-sm" title="Editar">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="deleteHeroi(vingador)" title="Excluir">
+                      <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+          </td>
+  </tbody>
+</table>

@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
     vingadores: Array<Vingador>;
     selecionado: Vingador;
     vingadors: Vingador = new Vingador(0, '', '', '');
+    editando = false;
 
     constructor() {
         this.title = 'Gerenciar Vingadores';
@@ -36,44 +37,26 @@ export class AppComponent implements OnInit {
         this.selecionado = vingador;
     }
 
-    limpar(){
-        this.vingadors = new Vingador(0, '', '', '');
-    }
-
-    editHeroi(id){
-        this.vingadors = this.vingadores[id];
+    editHeroi(heroi: Vingador): void{
+        this.vingadors = heroi;
+        this.editando = true;
         
     }
 
-    submit(){
-        if(this.vingadors.id > 0){
-            var index = this.vingadores.indexOf(this.vingadors);
-            this.vingadores[index] = this.vingadors;
-            this.limpar();
-        }
-        else{
-            this.vingadores.push(new Vingador(++this.id, this.vingadors.nome, this.vingadors.pessoa, this.vingadors.urlFoto));
-           /* this.id = this.id+1;*/
-            this.limpar();
+    submit(novo: Vingador): void{
+        if (!this.editando) {
+            const novoId: number = ++this.id;
+            this.vingadores.push(new Vingador(novoId, novo.nome, novo.pessoa, novo.urlFoto));
+            this.vingadors = new Vingador(0, '', '', '');
+        } else {
+            this.vingadors = new Vingador(0, '', '', '');
+            this.editando = false;
         }   
     }
 
-    deleteHeroi(id: number): void{ /* não é obrigatório declarar o tipo de retorno nem mesmo o tipo do parâmetro */
-        /*this.vingadores.splice(id, 1);
-        this.limpar();*/
-
-        //OUTRA FORMA DE DELETAR PERCORRENDO O ARRAY ATÉ ENCONTRAR O ID
-        let indice = -1;
-        for (let i=0; i < this.vingadores.length; i++){
-            if(this.vingadores[i].id == id){
-                indice = i;
-                i = this.vingadores.length; 
-            }
-        }
-        if(indice != -1){
-            this.vingadores.splice(indice, 1); //esse segundo parâmetro é a quantidade de objetos que deseja excluir
-            this.vingadors = new Vingador(0, '', '', '');
-        }
+    deleteHeroi(heroi: Vingador): void{ /* não é obrigatório declarar o tipo de retorno nem mesmo o tipo do parâmetro */
+        this.vingadores.splice(this.vingadores.indexOf(heroi), 1); //esse segundo parâmetro é a quantidade de objetos que deseja excluir
+        this.vingadors = new Vingador(0, '', '', '');
     }
 
 }

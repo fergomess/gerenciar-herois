@@ -1,0 +1,19 @@
+<form #formCadastro="ngForm" (ngSubmit)="cadastrar()">
+  <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="novoVingador.nome" required>
+  </div>
+  <div class="form-group">
+      <label for="pessoa">Pessoa:</label>
+      <input type="text" class="form-control" id="pessoa" name="pessoa" [(ngModel)]="novoVingador.pessoa" required>
+  </div>
+  <div class="form-group">
+          <label for="pessoa">Foto (URL):</label>
+          <input type="text" class="form-control" id="foto" name="foto" [(ngModel)]="novoVingador.urlFoto">
+      </div>
+  <div class="pull-right">
+          <button type="text" class="btn btn-danger" (click)="limpar()"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+          <button type="submit" class="btn btn-success" [disabled]="!formCadastro.valid"><i class="fa fa-check" aria-hidden="true"></i> Salvar</button>
+  </div>
+  <div class="clearfix"></div>
+</form>
